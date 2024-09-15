@@ -160,7 +160,6 @@ namespace UnityStandardAssets._2D
 
 
             bool canJump = m_Grounded || canAerialJump || canWallJump;
-            Debug.Log($"Inputs:Crouch:{crouch}, move:{move}, jumpDown:{jumpDown}");
 
             if(m_IsChargingJump)
             {
