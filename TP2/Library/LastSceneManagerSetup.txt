@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/BaseScene.unity
+- path: Assets/Gym/Gym_07/Gym_07.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

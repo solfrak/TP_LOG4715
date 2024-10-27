@@ -386,6 +386,8 @@
 -analyzer:"C:/Program Files/Unity/Hub/Editor/6000.0.12f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 -analyzer:"C:/Program Files/Unity/Hub/Editor/6000.0.12f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.UIToolkit.SourceGenerator.dll"
 "Assets/PlayerControler.cs"
+"Assets/Script/FieldOfView.cs"
+"Assets/Show.cs"
 "Assets/Supercyan Character Pack Free Sample/Scripts/CameraLogic.cs"
 "Assets/Supercyan Character Pack Free Sample/Scripts/Demo.cs"
 "Assets/Supercyan Character Pack Free Sample/Scripts/SimpleCharacterControl.cs"
