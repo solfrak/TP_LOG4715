@@ -1,4 +1,4 @@
-using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -9,6 +9,8 @@ public class FieldOfView : MonoBehaviour
     
     [Range(0, 360)]
     public float ViewAngle;
+    
+    public float TimeBeforeDetecting;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     public LayerMask targetMask;
@@ -22,6 +24,8 @@ public class FieldOfView : MonoBehaviour
     public float edgeDstThreshold;
     
     public MeshFilter viewMeshFilter;
+
+    private bool isDetected = false;
     Mesh viewMesh;
     private void Update()
     {
@@ -46,6 +50,12 @@ public class FieldOfView : MonoBehaviour
     {
         Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, ViewRadius, targetMask);
 
+        if (targetsInViewRadius.Length == 0)
+        {
+            isDetected = false;
+            return;
+        }
+        
         for (int i = 0; i < targetsInViewRadius.Length; i++)
         {
             Transform target = targetsInViewRadius[i].transform;
@@ -54,12 +64,28 @@ public class FieldOfView : MonoBehaviour
             if (Vector3.Angle(transformFoward, dirToTarget) < ViewAngle / 2)
             {
                 float dstToTarget = Vector3.Distance(transform.position, target.position);
-                if (!Physics.Raycast (transform.position, dirToTarget, dstToTarget, obstacleMask)) 
+                if (!Physics.Raycast (transform.position, dirToTarget, dstToTarget, obstacleMask))
                 {
-                    DetectionEvent?.Invoke(targetsInViewRadius[i].gameObject);
+                    if (!isDetected)
+                    {
+                        isDetected = true;
+                        StartCoroutine(ExampleCoroutine(targetsInViewRadius[i].gameObject));
+                    }
                 }
             }
+            else
+            {
+                isDetected = false;
+            }
+        }
+    }
 
+    IEnumerator ExampleCoroutine(GameObject gameObject)
+    {
+        yield return new WaitForSeconds(TimeBeforeDetecting);
+        if (isDetected)
+        {
+            DetectionEvent?.Invoke(gameObject);
         }
     }
     public Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal) {
