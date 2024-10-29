@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638652238301919614
-    m_Hash: 3296226753
+      ticks: 638658205577999935
+    m_Hash: 800923145
   m_LockFileStatus:
     m_FilePath: C:/Users/lapor/Development/TP_LOG4715/TP2/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638652238302228345
-    m_Hash: 4016554946
+      ticks: 638658205578054309
+    m_Hash: 3563102206
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
@@ -510,6 +510,202 @@ m_ResolvedPackages:
     compatibilityLevel: 0
     minimumPackageVersion: 2.0.22
     minimumUnityVersion: 2019.4.25f1
+- packageId: com.unity.inputsystem@1.9.0
+  testable: 0
+  isDirectDependency: 1
+  version: 1.9.0
+  source: 1
+  resolvedPath: C:\Users\lapor\Development\TP_LOG4715\TP2\Library\PackageCache\com.unity.inputsystem
+  assetPath: Packages/com.unity.inputsystem
+  name: com.unity.inputsystem
+  displayName: Input System
+  author:
+    name: 
+    email: 
+    url: 
+  category: 
+  type: assets
+  description: A new input system which can be used as a more extensible and customizable
+    alternative to Unity's classic input system in UnityEngine.Input.
+  errors: []
+  versions:
+    all:
+    - 0.1.2-preview
+    - 0.2.0-preview
+    - 0.2.1-preview
+    - 0.2.6-preview
+    - 0.2.8-preview
+    - 0.2.10-preview
+    - 0.9.0-preview
+    - 0.9.1-preview
+    - 0.9.2-preview
+    - 0.9.3-preview
+    - 0.9.4-preview
+    - 0.9.5-preview
+    - 0.9.6-preview
+    - 1.0.0-preview
+    - 1.0.0-preview.1
+    - 1.0.0-preview.2
+    - 1.0.0-preview.3
+    - 1.0.0-preview.4
+    - 1.0.0-preview.5
+    - 1.0.0-preview.6
+    - 1.0.0-preview.7
+    - 1.0.0
+    - 1.0.1
+    - 1.0.2
+    - 1.1.0-pre.5
+    - 1.1.0-pre.6
+    - 1.1.0-preview.1
+    - 1.1.0-preview.2
+    - 1.1.0-preview.3
+    - 1.1.1
+    - 1.2.0
+    - 1.3.0
+    - 1.4.1
+    - 1.4.2
+    - 1.4.3
+    - 1.4.4
+    - 1.5.0
+    - 1.5.1
+    - 1.6.1
+    - 1.6.3
+    - 1.7.0
+    - 1.8.0-pre.1
+    - 1.8.0-pre.2
+    - 1.8.0
+    - 1.8.1
+    - 1.8.2
+    - 1.9.0
+    - 1.10.0
+    - 1.11.0
+    - 1.11.1
+    - 1.11.2
+    compatible:
+    - 1.9.0
+    - 1.10.0
+    - 1.11.0
+    - 1.11.1
+    - 1.11.2
+    recommended: 1.9.0
+    deprecated: []
+  dependencies:
+  - name: com.unity.modules.uielements
+    version: 1.0.0
+  resolvedDependencies:
+  - name: com.unity.modules.uielements
+    version: 1.0.0
+  - name: com.unity.modules.ui
+    version: 1.0.0
+  - name: com.unity.modules.imgui
+    version: 1.0.0
+  - name: com.unity.modules.jsonserialize
+    version: 1.0.0
+  - name: com.unity.modules.hierarchycore
+    version: 1.0.0
+  keywords:
+  - input
+  - events
+  - keyboard
+  - mouse
+  - gamepad
+  - touch
+  - vr
+  - xr
+  registry:
+    id: main
+    name: 
+    url: https://packages.unity.com
+    scopes: []
+    isDefault: 1
+    capabilities: 7
+    configSource: 0
+  hideInEditor: 1
+  entitlements:
+    licensingModel: 1
+  isAssetStorePackage: 0
+  datePublishedTicks: 638567251840000000
+  documentationUrl: https://docs.unity3d.com/Packages/com.unity.inputsystem@1.9/manual/index.html
+  hasRepository: 1
+  repository:
+    type: git
+    url: https://github.com/Unity-Technologies/InputSystem.git
+    revision: 73feff4267461a868fdfc3fa43f112de1f5312c1
+    path: 
+  unityLifecycle:
+    version: 1.9.0
+    nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
+  git:
+    hash: 
+    revision: 
+  upmReserved: '{"changelog":"### Changed\n- Added warning messages to both `OnScreenStick`
+    and `OnScreenButton` Inspector editors that would display a warning message in
+    case on-screen control components are added to a `GameObject` not part of a valid
+    UI hierarchy.\n- Changed behavior for internal feature flag relating to Windows
+    Gaming Input to be ignored on non-supported platforms.\n- Changed `DualSenseHIDInputReport`
+    from internal to public visibility\n\n### Fixed\n- Avoid potential crashes from
+    `NullReferenceException` in `FireStateChangeNotifications`.\n- Fixed cases where
+    `wasPressedThisFrame` would not return true if a press and release happened within
+    the same frame before being queried (and vice versa for `wasReleasedThisFrame`).\n-
+    Fixed an issue where a composite binding would not be consecutively triggered
+    after ResetDevice() has been called from the associated action handler [ISXB-746](https://issuetracker.unity3d.com/product/unity/issues/guid/ISXB-746).\n-
+    Fixed resource designation for \"d_InputControl\" icon to address CI failure.\n-
+    Fixed an issue where a composite binding would not be consecutively triggered
+    after disabling actions while there are action modifiers in progress [ISXB-505](https://issuetracker.unity3d.com/product/unity/issues/guid/ISXB-505).\n-
+    Fixed prefabs and missing default control scheme used by PlayerInput component
+    are now correctly shown in the inspector [ISXB-818](https://issuetracker.unity3d.com/product/unity/issues/guid/ISXB-818).\n-
+    Fixed error thrown when Cancelling Control Scheme creation in Input Actions Editor.\n-
+    Fixed Scheme Name in Control Scheme editor menu that gets reset when editing
+    devices [ISXB-763](https://issuetracker.unity3d.com/product/unity/issues/guid/ISXB-763).\n-
+    Fixed an issue where `InputActionAsset.FindAction(string, bool)` would throw
+    `System.NullReferenceException` instead of returning `null` if searching for
+    a non-existent action with an explicit action path and using `throwIfNotFound:
+    false`, e.g. searching for \"Map/Action\" when `InputActionMap` \"Map\" exists
+    but no `InputAction` named \"Action\" exists within that map [ISXB-895](https://issuetracker.unity3d.com/product/unity/issues/guid/ISXB-895).\n-
+    Fixed scroll speed being slower when using InputSystemUIInputModule instead of
+    StandaloneInputModule. (https://jira.unity3d.com/browse/ISXB-771)\n- Fixed an
+    issue where adding a `OnScreenButton` or `OnScreenStick` to a regular GameObject
+    would lead to exception in editor.\n- Fixed an issue where adding a `OnScreenStick`
+    to a regular GameObject and entering play-mode would lead to exceptions being
+    generated.\n- Fixed InputActionReference issues when domain reloads are disabled
+    [ISXB-601](https://issuetracker.unity3d.com/product/unity/issues/guid/ISXB-601),
+    [ISXB-718](https://issuetracker.unity3d.com/product/unity/issues/guid/ISXB-718),
+    [ISXB-900](https://issuetracker.unity3d.com/product/unity/issues/guid/ISXB-900)\n-
+    Fixed a performance issue with many objects using multiple action maps [ISXB-573](https://issuetracker.unity3d.com/product/unity/issues/guid/ISXB-573).\n-
+    Fixed an variable scope shadowing issue causing compilation to fail on Unity
+    2019 LTS.\n- Fixed an issue where changing `InputSettings` instance would not
+    affect associated feature flags.\n- Submit and Cancel UI actions will now respect
+    configured interactions. [ISXB-841](https://issuetracker.unity3d.com/product/unity/issues/guid/ISXB-841).\n-
+    Fixed the UI generation of enum fields when editing interactions of action properties.
+    The new selected value was lost when saving.\n- Fixed the UI generation of custom
+    interactions of action properties when it rely on OnGUI callback. [ISXB-886](https://issuetracker.unity3d.com/product/unity/issues/guid/ISXB-886).\n-
+    Fixed deletion of last composite part raising an exception. [ISXB-804](https://issuetracker.unity3d.com/product/unity/issues/guid/ISXB-804)\n-
+    Fixed an issue related to Visualizers sample where exceptions would be thrown
+    by InputActionVisualizer and InputControlVisualizer when entering play-mode if
+    added as components to a new `GameObject`.\n- Fixed an issue with InputAction
+    Asset editor where invalid ControlScheme names with only spaces could be entered.
+    [ISXB-547](https://issuetracker.unity3d.com/product/unity/issues/guid/ISXB-547).\n\n###
+    Added\n- Added additional device information when logging the error due to exceeding
+    the maximum number of events processed\n  set by `InputSystem.settings.maxEventsBytesPerUpdate`.
+    This additional information is available in development builds\n  only.\n- Fixed
+    deletion of last composite part raising an exception. [ISXB-804](https://issuetracker.unity3d.com/product/unity/issues/guid/ISXB-804)\n-
+    Expanded editor and build insight analytics to cover ``.inputactions` asset editor
+    usage, `InputSettings` and common component configurations.\n\n### Changed\n-
+    Changed `DualSenseHIDInputReport` from internal to public visibility\n- Added
+    Input Setting option allowing to keep platform-specific scroll wheel input values
+    instead of automatically converting them to a normalized range."}'
+  assetStore:
+    productId: 
+  fingerprint: 4c821b62f24c1485f7476242f03772aaa7a79f1d
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 1.9.0
+    minimumUnityVersion: 2019.4.0a1
 - packageId: com.unity.test-framework@1.4.4
   testable: 0
   isDirectDependency: 1

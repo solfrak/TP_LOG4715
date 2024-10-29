@@ -1,16 +1,17 @@
+using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Show : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public Toggle isInRange;
+    public Toggle isDetected;
 
-    // Update is called once per frame
-    void Update()
+    public FieldOfView FieldOfView;
+
+    private void Update()
     {
-        
+        isDetected.isOn = FieldOfView.IsDetected;
+        isInRange.isOn = FieldOfView.IsInRange;
     }
 }

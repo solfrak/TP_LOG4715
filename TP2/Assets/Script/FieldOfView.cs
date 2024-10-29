@@ -6,10 +6,9 @@ using UnityEngine.Events;
 public class FieldOfView : MonoBehaviour
 {
     public float ViewRadius;
-    
-    [Range(0, 360)]
-    public float ViewAngle;
-    
+
+    [Range(0, 360)] public float ViewAngle;
+
     public float TimeBeforeDetecting;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
@@ -18,14 +17,24 @@ public class FieldOfView : MonoBehaviour
 
     public UnityEvent<GameObject> DetectionEvent;
 
-    
-    public float meshResolution;
+    public bool IsInRange
+    {
+        get { return isInRange; }
+    }
+
+    public bool IsDetected
+    {
+        get { return isDetected; }
+    }
+
+
+public float meshResolution;
     public int edgeResolveIterations;
     public float edgeDstThreshold;
     
     public MeshFilter viewMeshFilter;
 
-    private bool isDetected = false;
+    private bool isInRange = false;
     Mesh viewMesh;
     private void Update()
     {
@@ -52,7 +61,7 @@ public class FieldOfView : MonoBehaviour
 
         if (targetsInViewRadius.Length == 0)
         {
-            isDetected = false;
+            isInRange = false;
             return;
         }
         
@@ -66,9 +75,9 @@ public class FieldOfView : MonoBehaviour
                 float dstToTarget = Vector3.Distance(transform.position, target.position);
                 if (!Physics.Raycast (transform.position, dirToTarget, dstToTarget, obstacleMask))
                 {
-                    if (!isDetected)
+                    if (!isInRange)
                     {
-                        isDetected = true;
+                        isInRange = true;
                         StartCoroutine(ExampleCoroutine(targetsInViewRadius[i].gameObject));
                     }
                 }
@@ -76,6 +85,7 @@ public class FieldOfView : MonoBehaviour
             else
             {
                 isDetected = false;
+                isInRange = false;
             }
         }
     }
@@ -83,11 +93,15 @@ public class FieldOfView : MonoBehaviour
     IEnumerator ExampleCoroutine(GameObject gameObject)
     {
         yield return new WaitForSeconds(TimeBeforeDetecting);
-        if (isDetected)
+        if (isInRange)
         {
+            isDetected = true;
             DetectionEvent?.Invoke(gameObject);
         }
     }
+
+    private bool isDetected { get; set; }
+
     public Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal) {
         if (!angleIsGlobal)
         {
