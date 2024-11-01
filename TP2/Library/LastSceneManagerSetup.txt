@@ -1,5 +1,0 @@
-sceneSetups:
-- path: Assets/Gym/Gym_08/Gym_08.unity
-  isLoaded: 1
-  isActive: 1
-  isSubScene: 0
