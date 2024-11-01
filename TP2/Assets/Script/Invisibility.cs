@@ -8,7 +8,13 @@ public class Invisibility : MonoBehaviour
 {
     public float InvisibleTime;
     public float InvisibleRestoreTime;
-    public UnityEvent<bool> isInvisibleEvent;
+    public UnityEvent isInvisibleEvent;
+    public UnityEvent isVisibleEvent;
+    
+    public bool IsInvisible
+    {
+        get { return m_IsInvisible; }
+    }
 
     private InputAction invisibilityAction;
 
@@ -17,8 +23,8 @@ public class Invisibility : MonoBehaviour
         get { return invisibilityAction.ReadValue<float>() > 0; }
     }
 
-    private bool IsInvisible = false;
-    private bool CanBecomeInvisible = true;
+    private bool m_IsInvisible = false;
+    private bool m_CanBecomeInvisible = true;
 
     void Start()
     {
@@ -28,7 +34,7 @@ public class Invisibility : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (CanBecomeInvisible && !IsInvisible && IsActionTrigger)
+        if (m_CanBecomeInvisible && !m_IsInvisible && IsActionTrigger)
         {
             //Trigger Invisibility
             StartInvisibility();
@@ -39,24 +45,24 @@ public class Invisibility : MonoBehaviour
     {
         Debug.Log("Become invisible");
         //Change some stuff
-        IsInvisible = true;
-        CanBecomeInvisible = false;
-        isInvisibleEvent?.Invoke(true);
+        m_IsInvisible = true;
+        m_CanBecomeInvisible = false;
+        isInvisibleEvent?.Invoke();
         StartCoroutine(Timer(InvisibleTime, StopInvisibility));
     }
 
     void StopInvisibility()
     {
         Debug.Log("Become visible");
-        IsInvisible = false;
-        isInvisibleEvent?.Invoke(false);
+        m_IsInvisible = false;
+        isVisibleEvent?.Invoke();
         StartCoroutine(Timer(InvisibleRestoreTime, RestoreAbility));
     }
 
     void RestoreAbility()
     {
         Debug.Log("Can become invisible");
-        CanBecomeInvisible = true;
+        m_CanBecomeInvisible = true;
     }
 
     IEnumerator Timer(float time, Action func)

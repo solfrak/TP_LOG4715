@@ -70,7 +70,10 @@ public float meshResolution;
             Transform target = targetsInViewRadius[i].transform;
             Vector3 dirToTarget = (target.position - transform.position).normalized;
             Vector3 transformFoward = transform.forward;
-            if (Vector3.Angle(transformFoward, dirToTarget) < ViewAngle / 2)
+            GameObject character = GetParent(targetsInViewRadius[i].gameObject);
+            Invisibility? invisibility = character.GetComponent<Invisibility>();
+            bool isPlayerInvisible = invisibility && invisibility.IsInvisible;
+            if (!isPlayerInvisible && Vector3.Angle(transformFoward, dirToTarget) < ViewAngle / 2)
             {
                 float dstToTarget = Vector3.Distance(transform.position, target.position);
                 if (!Physics.Raycast (transform.position, dirToTarget, dstToTarget, obstacleMask))
@@ -78,7 +81,7 @@ public float meshResolution;
                     if (!isInRange)
                     {
                         isInRange = true;
-                        StartCoroutine(ExampleCoroutine(targetsInViewRadius[i].gameObject));
+                        StartCoroutine(DalyBeforeDetecting(character));
                     }
                 }
             }
@@ -90,10 +93,23 @@ public float meshResolution;
         }
     }
 
-    IEnumerator ExampleCoroutine(GameObject gameObject)
+    private GameObject GetParent(GameObject o)
+    {
+        GameObject current = o;
+        while (current.transform.parent != null)
+        {
+            current = current.transform.parent.gameObject;
+        }
+
+        return current;
+    }
+
+    IEnumerator DalyBeforeDetecting(GameObject gameObject)
     {
         yield return new WaitForSeconds(TimeBeforeDetecting);
-        if (isInRange)
+        Invisibility? invisibility = gameObject.GetComponent<Invisibility>();
+        bool isPlayerInvisible = invisibility && invisibility.IsInvisible;
+        if (isInRange && !isPlayerInvisible)
         {
             isDetected = true;
             DetectionEvent?.Invoke(gameObject);
@@ -101,6 +117,7 @@ public float meshResolution;
     }
 
     private bool isDetected { get; set; }
+    
 
     public Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal) {
         if (!angleIsGlobal)

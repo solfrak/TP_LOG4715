@@ -388,6 +388,7 @@
 -analyzer:"C:/Program Files/Unity/Hub/Editor/6000.0.12f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll"
 -analyzer:"C:/Program Files/Unity/Hub/Editor/6000.0.12f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 -analyzer:"C:/Program Files/Unity/Hub/Editor/6000.0.12f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.UIToolkit.SourceGenerator.dll"
+"Assets/InvisibleLog.cs"
 "Assets/PlayerControler.cs"
 "Assets/Script/FieldOfView.cs"
 "Assets/Script/Invisibility.cs"
