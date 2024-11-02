@@ -9,6 +9,13 @@ public class PlayerControler : MonoBehaviour
     private static readonly Vector3 CameraPosition = new Vector3(10, 1, 0);
     private static readonly Vector3 InverseCameraPosition = new Vector3(-10, 1, 0);
 
+    [Header("Energy")]
+    [SerializeField]
+    private EnergyBarSO _energyBarSo;
+    [SerializeField] private float CostJump;
+    
+    
+
     // Déclaration des variables
     bool _Grounded { get; set; }
     bool _Flipped { get; set; }
@@ -16,6 +23,7 @@ public class PlayerControler : MonoBehaviour
     Rigidbody _Rb { get; set; }
     Camera _MainCamera { get; set; }
 
+    [Header("Other")]
     // Valeurs exposées
     [SerializeField]
     float MoveSpeed = 5.0f;
@@ -62,12 +70,13 @@ public class PlayerControler : MonoBehaviour
     {
         if (_Grounded)
         {
-            if (Input.GetButtonDown("Jump"))
+            if (Input.GetButtonDown("Jump") && (_energyBarSo== null || _energyBarSo.HasEnoughEnergy(CostJump)))
             {
                 _Rb.AddForce(new Vector3(0, JumpForce, 0), ForceMode.Impulse);
                 _Grounded = false;
                 _Anim.SetBool("Grounded", false);
                 _Anim.SetBool("Jump", true);
+                _energyBarSo?.UpdateEnergy(CostJump);
             }
         }
     }

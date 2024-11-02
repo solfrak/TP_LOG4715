@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -81,7 +82,7 @@ public float meshResolution;
                     if (!isInRange)
                     {
                         isInRange = true;
-                        StartCoroutine(DalyBeforeDetecting(character));
+                        StartCoroutine(DalyBeforeDetecting(targetsInViewRadius[i].gameObject, invisibility));
                     }
                 }
             }
@@ -104,10 +105,9 @@ public float meshResolution;
         return current;
     }
 
-    IEnumerator DalyBeforeDetecting(GameObject gameObject)
+    IEnumerator DalyBeforeDetecting(GameObject gameObject, [CanBeNull] Invisibility invisibility)
     {
         yield return new WaitForSeconds(TimeBeforeDetecting);
-        Invisibility? invisibility = gameObject.GetComponent<Invisibility>();
         bool isPlayerInvisible = invisibility && invisibility.IsInvisible;
         if (isInRange && !isPlayerInvisible)
         {
