@@ -3,7 +3,7 @@ using UnityEngine;
 public class CollisionChecker : MonoBehaviour
 {
     [SerializeField]
-    Vector3 _BoxCheckHalfSize = Vector3.zero;
+    Vector3 _BoxCheckHalfSize = Vector3.one;
 
     [SerializeField]
     Vector3 _BoxCheckOrigin = Vector3.zero;

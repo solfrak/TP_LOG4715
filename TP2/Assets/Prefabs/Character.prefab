@@ -149,6 +149,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1968476592218994, guid: 313ad0ef31f75b84f9f31c0528802fdd, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4716740120580238, guid: 313ad0ef31f75b84f9f31c0528802fdd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.279
+      objectReference: {fileID: 0}
     - target: {fileID: 4889916270699016, guid: 313ad0ef31f75b84f9f31c0528802fdd, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -246,7 +254,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 114
   m_CollisionDetection: 0
 --- !u!65 &4672044004934839772
 BoxCollider:
@@ -276,7 +284,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3605014267063819809}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: eb535d441884b784492d6b42c8ebcadf, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -303,15 +311,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  jumpForce: 5
-  additionalChargingJumpForceMax: 4
-  chargingJumpForcePerSecond: 3
-  aerialJumpForce: 6
+  jumpForce: 4
+  chargedJumpDuration: 0.3
+  chargingJumpForcePerSecond: 10
+  aerialJumpForce: 5
   nbAerialJumpsMax: 1
   timeBetweenAerialJumpsMin: 0.25
-  wallJumpVerticalForce: 6
-  wallJumpHorizontalForce: 7
-  wallJumpDuration: 0.25
+  wallJumpVerticalForce: 5
+  wallJumpHorizontalForce: 4
+  wallJumpDuration: 0.3
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
