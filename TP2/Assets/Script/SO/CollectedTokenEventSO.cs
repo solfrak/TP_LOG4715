@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-[CreateAssetMenu(fileName = "CollectedTokenEvent.asset", menuName = "ScriptableObject/CollectedTokenEvent")]
+[CreateAssetMenu(fileName = "CollectedTokenEvent.asset", menuName = "Scriptable Objects/CollectedTokenEvent")]
 public class CollectedTokenEventSO : ScriptableObject
 {
     [System.NonSerialized]

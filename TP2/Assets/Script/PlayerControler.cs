@@ -27,9 +27,17 @@ public class PlayerControler : MonoBehaviour
     Camera _MainCamera { get; set; }
 
     // Exposed Variables
+    [Header("Energy")]
+    [SerializeField]
+    private EnergyBarSO _energyBarSo;
+
+    [SerializeField] private float CostJump;
+
+    [Header("Movement")]
     [SerializeField, Min(0f)]
     float moveSpeed = 5.0f;
 
+    [Header("Jump")]
     [SerializeField, Min(0f)]
     float jumpForce = 5f;
 
@@ -39,6 +47,7 @@ public class PlayerControler : MonoBehaviour
     [SerializeField, Min(0f)]
     float chargingJumpForcePerSecond = 5f;
 
+    [Header("Aerial Jump")]
     [SerializeField, Min(0f)]
     float aerialJumpForce = 10f;
 
@@ -48,6 +57,7 @@ public class PlayerControler : MonoBehaviour
     [SerializeField, Min(0f)]
     float timeBetweenAerialJumpsMin = 0.25f;
 
+    [Header("Wall Jump")]
     [SerializeField, Min(0f)]
     float wallJumpVerticalForce = 10f;
 
@@ -57,6 +67,7 @@ public class PlayerControler : MonoBehaviour
     [SerializeField, Min(0f)]
     float wallJumpDuration = 0.20f;
 
+    [Header("Misc.")]
     [SerializeField]
     LayerMask whatIsGround;
 
@@ -141,15 +152,16 @@ public class PlayerControler : MonoBehaviour
             }
         }
 
-        if(Input.GetButtonDown("Jump"))
+        if(Input.GetButtonDown("Jump") )
         {
             // Grounded jump
-            if(_Grounded)
+            if(_Grounded && (_energyBarSo == null || _energyBarSo.HasEnoughEnergy(CostJump)))
             {
                 _Rb.AddForce(new Vector3(0, jumpForce, 0f), ForceMode.Impulse);
                 _Grounded = false;
                 _Anim.SetBool("Grounded", false);
                 _Anim.SetBool("Jump", true);
+                _energyBarSo?.UpdateEnergy(CostJump);
             }
             // Wall jump
             else if(_IsInContactWithLeftWall || _IsInContactWithRightWall)
