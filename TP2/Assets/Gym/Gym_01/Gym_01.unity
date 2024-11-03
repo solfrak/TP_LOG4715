@@ -1250,6 +1250,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2215173139304489661, guid: 15a8381cf63c99742a59a0d0ee019c3f,
         type: 3}
+      propertyPath: _energyBarSo
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2215173139304489661, guid: 15a8381cf63c99742a59a0d0ee019c3f,
+        type: 3}
       propertyPath: nbAerialJumpsMax
       value: 0
       objectReference: {fileID: 0}

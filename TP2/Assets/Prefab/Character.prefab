@@ -310,7 +310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b52ec670a2ef974c9e5983c19d55bcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _energyBarSo: {fileID: 11400000, guid: 072aeaeb7329f034a8ee6740b59959ec, type: 2}
+  _energyBarSo: {fileID: 0}
   CostJump: 0
   moveSpeed: 5
   jumpForce: 4
