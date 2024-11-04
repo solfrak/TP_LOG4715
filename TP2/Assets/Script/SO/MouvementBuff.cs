@@ -9,12 +9,12 @@ public class MouvementBuff : PowerUpSO
     
     public override void Apply(GameObject target)
     {
-        var controller = target.GetComponent<PlayerControler>();
+        var controller = target.GetComponentInChildren<PlayerControler>();
 
         if (controller)
         {
-            controller.JumpForce += jumpForceAdded;
-            controller.MoveSpeed += moveSpeedAdded;
+            controller.moveSpeed += moveSpeedAdded;
+            controller.jumpForce += jumpForceAdded;
         }
     }
 }
