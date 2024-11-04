@@ -34,12 +34,14 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] private float CostJump;
 
     [Header("Movement")]
+    
+    
     [SerializeField, Min(0f)]
-    float moveSpeed = 5.0f;
+    public float moveSpeed = 5.0f;
 
     [Header("Jump")]
     [SerializeField, Min(0f)]
-    float jumpForce = 5f;
+    public float jumpForce = 5f;
 
     [SerializeField, Min(0f)]
     float chargedJumpDuration = 1f;
@@ -52,7 +54,7 @@ public class PlayerControler : MonoBehaviour
     float aerialJumpForce = 10f;
 
     [SerializeField, Min(0)]
-    int nbAerialJumpsMax = 1;
+    public int nbAerialJumpsMax = 1;
 
     [SerializeField, Min(0f)]
     float timeBetweenAerialJumpsMin = 0.25f;
