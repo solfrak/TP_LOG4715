@@ -35,6 +35,7 @@ public float meshResolution;
     
     public MeshFilter viewMeshFilter;
 
+    [SerializeField]
     private bool isInRange = false;
     Mesh viewMesh;
     private void Update()
@@ -116,7 +117,7 @@ public float meshResolution;
         }
     }
 
-    private bool isDetected { get; set; }
+    [SerializeField] private bool isDetected = false;
     
 
     public Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal) {

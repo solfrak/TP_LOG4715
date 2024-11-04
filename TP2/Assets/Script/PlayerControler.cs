@@ -155,16 +155,15 @@ public class PlayerControler : MonoBehaviour
         if(Input.GetButtonDown("Jump") )
         {
             // Grounded jump
-            if(_Grounded && (_energyBarSo == null || _energyBarSo.HasEnoughEnergy(CostJump)))
+            if(_Grounded)
             {
                 _Rb.AddForce(new Vector3(0, jumpForce, 0f), ForceMode.Impulse);
                 _Grounded = false;
                 _Anim.SetBool("Grounded", false);
                 _Anim.SetBool("Jump", true);
-                _energyBarSo?.UpdateEnergy(CostJump);
             }
             // Wall jump
-            else if(_IsInContactWithLeftWall || _IsInContactWithRightWall)
+            else if(_IsInContactWithLeftWall || _IsInContactWithRightWall && (_energyBarSo  == null || _energyBarSo.HasEnoughEnergy(CostJump)))
             {
                 float signedWallJumpHorizontalForce = _IsInContactWithLeftWall ? wallJumpHorizontalForce : -wallJumpHorizontalForce;
 
@@ -176,10 +175,11 @@ public class PlayerControler : MonoBehaviour
                 _Grounded = false;
                 _Anim.SetBool("Grounded", false);
                 _Anim.SetBool("Jump", true);
+                _energyBarSo?.UpdateEnergy(CostJump);
             }
             // Aerial Jumps
             else if(_NbAerialJumpsUsed < nbAerialJumpsMax
-                && _TimeSinceLastAerialJump > timeBetweenAerialJumpsMin)
+                && _TimeSinceLastAerialJump > timeBetweenAerialJumpsMin && (_energyBarSo  == null || _energyBarSo.HasEnoughEnergy(CostJump)))
             {
                 // Reset vertical velocity to make the aerial jump consistent
                 _Rb.linearVelocity = new Vector3(_Rb.linearVelocity.x, 0f, _Rb.linearVelocity.z);
@@ -191,6 +191,7 @@ public class PlayerControler : MonoBehaviour
 
                 _NbAerialJumpsUsed++;
                 _TimeSinceLastAerialJump = 0f;
+                _energyBarSo?.UpdateEnergy(CostJump);
             }
         }
 

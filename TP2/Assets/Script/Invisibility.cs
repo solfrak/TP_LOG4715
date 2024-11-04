@@ -23,6 +23,7 @@ public class Invisibility : MonoBehaviour
         get { return invisibilityAction.ReadValue<float>() > 0; }
     }
 
+    [SerializeField]
     private bool m_IsInvisible = false;
     private bool m_CanBecomeInvisible = true;
 
