@@ -10,6 +10,10 @@ public class Invisibility : MonoBehaviour
     public float InvisibleRestoreTime;
     public UnityEvent isInvisibleEvent;
     public UnityEvent isVisibleEvent;
+
+    public SkinnedMeshRenderer m_MeshRenderer;
+    public Material head_material;
+    public Material body_material;
     
     public bool IsInvisible
     {
@@ -45,6 +49,11 @@ public class Invisibility : MonoBehaviour
     void StartInvisibility()
     {
         Debug.Log("Become invisible");
+
+        Color color = m_MeshRenderer.material.color;
+
+        m_MeshRenderer.materials[0].color = Color.gray;
+        m_MeshRenderer.materials[1].color = Color.gray;
         //Change some stuff
         m_IsInvisible = true;
         m_CanBecomeInvisible = false;
@@ -55,6 +64,8 @@ public class Invisibility : MonoBehaviour
     void StopInvisibility()
     {
         Debug.Log("Become visible");
+        m_MeshRenderer.materials[0].color = body_material.color;
+        m_MeshRenderer.materials[1].color = head_material.color;
         m_IsInvisible = false;
         isVisibleEvent?.Invoke();
         StartCoroutine(Timer(InvisibleRestoreTime, RestoreAbility));

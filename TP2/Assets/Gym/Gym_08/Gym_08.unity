@@ -177,6 +177,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5298906266676669794, guid: da3567dda5fa5fa419eddafa1bc0909b,
+        type: 3}
+      propertyPath: DetectedMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 6ae2cc1519fcedb4ba64b1cf2d8eb98b, type: 2}
+    - target: {fileID: 5298906266676669794, guid: da3567dda5fa5fa419eddafa1bc0909b,
+        type: 3}
+      propertyPath: CurrentMeshRenderer
+      value: 
+      objectReference: {fileID: 56346351}
+    - target: {fileID: 5298906266676669794, guid: da3567dda5fa5fa419eddafa1bc0909b,
+        type: 3}
+      propertyPath: NotDetectedMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 84666b39e32ad8a4e8bc1f377d71c467, type: 2}
     - target: {fileID: 7873583333332341381, guid: da3567dda5fa5fa419eddafa1bc0909b,
         type: 3}
       propertyPath: m_Name
@@ -187,6 +202,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da3567dda5fa5fa419eddafa1bc0909b, type: 3}
+--- !u!23 &56346351 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 3887608955171514739, guid: da3567dda5fa5fa419eddafa1bc0909b,
+    type: 3}
+  m_PrefabInstance: {fileID: 46681274}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &122005744
 GameObject:
   m_ObjectHideFlags: 0
@@ -760,6 +781,12 @@ RectTransform:
   m_AnchoredPosition: {x: 367, y: 0}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!137 &620689879 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 3740653030883576699, guid: 15a8381cf63c99742a59a0d0ee019c3f,
+    type: 3}
+  m_PrefabInstance: {fileID: 698515168}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &698515168
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -776,12 +803,12 @@ PrefabInstance:
     - target: {fileID: 2426060460401659469, guid: 15a8381cf63c99742a59a0d0ee019c3f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.97
+      value: 1.156
       objectReference: {fileID: 0}
     - target: {fileID: 2426060460401659469, guid: 15a8381cf63c99742a59a0d0ee019c3f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.2280035
+      value: -1.08
       objectReference: {fileID: 0}
     - target: {fileID: 2426060460401659469, guid: 15a8381cf63c99742a59a0d0ee019c3f,
         type: 3}
@@ -1094,7 +1121,7 @@ MonoBehaviour:
   isDetected: {fileID: 325418732}
   isInvisible: {fileID: 563479914}
   FieldOfView: {fileID: 1661935197}
-  Invisibility: {fileID: 0}
+  Invisibility: {fileID: 1551256323}
 --- !u!1 &818189506
 GameObject:
   m_ObjectHideFlags: 0
@@ -1802,6 +1829,9 @@ MonoBehaviour:
   isVisibleEvent:
     m_PersistentCalls:
       m_Calls: []
+  m_MeshRenderer: {fileID: 620689879}
+  head_material: {fileID: 2100000, guid: e639426dff5dcfa40bf254c0ffc5f841, type: 2}
+  body_material: {fileID: 2100000, guid: 8d74c62051dcbe24eb59170e3cceb73e, type: 2}
   m_IsInvisible: 0
 --- !u!114 &1661935197 stripped
 MonoBehaviour:

@@ -8,6 +8,10 @@ public class FieldOfView : MonoBehaviour
 {
     public float ViewRadius;
 
+    public MeshRenderer CurrentMeshRenderer;
+    public Material DetectedMaterial;
+    public Material NotDetectedMaterial;
+
     [Range(0, 360)] public float ViewAngle;
 
     public float TimeBeforeDetecting;
@@ -26,16 +30,20 @@ public class FieldOfView : MonoBehaviour
     public bool IsDetected
     {
         get { return isDetected; }
+        private set
+        {
+            CurrentMeshRenderer.material.color = value ? DetectedMaterial.color : NotDetectedMaterial.color;
+            isDetected = value;
+        }
     }
 
 
-public float meshResolution;
+    public float meshResolution;
     public int edgeResolveIterations;
     public float edgeDstThreshold;
     
     public MeshFilter viewMeshFilter;
 
-    [SerializeField]
     private bool isInRange = false;
     Mesh viewMesh;
     private void Update()
@@ -64,6 +72,7 @@ public float meshResolution;
         if (targetsInViewRadius.Length == 0)
         {
             isInRange = false;
+            IsDetected = false;
             return;
         }
         
@@ -89,7 +98,7 @@ public float meshResolution;
             }
             else
             {
-                isDetected = false;
+                IsDetected = false;
                 isInRange = false;
             }
         }
@@ -112,12 +121,12 @@ public float meshResolution;
         bool isPlayerInvisible = invisibility && invisibility.IsInvisible;
         if (isInRange && !isPlayerInvisible)
         {
-            isDetected = true;
+            IsDetected = true;
             DetectionEvent?.Invoke(gameObject);
         }
     }
 
-    [SerializeField] private bool isDetected = false;
+    private bool isDetected = false;
     
 
     public Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal) {

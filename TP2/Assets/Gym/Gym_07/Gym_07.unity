@@ -378,6 +378,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 0
+--- !u!23 &324382332 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 3887608955171514739, guid: da3567dda5fa5fa419eddafa1bc0909b,
+    type: 3}
+  m_PrefabInstance: {fileID: 337804117}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &325418730
 GameObject:
   m_ObjectHideFlags: 0
@@ -521,6 +527,46 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5298906266676669794, guid: da3567dda5fa5fa419eddafa1bc0909b,
+        type: 3}
+      propertyPath: ViewAngle
+      value: 56
+      objectReference: {fileID: 0}
+    - target: {fileID: 5298906266676669794, guid: da3567dda5fa5fa419eddafa1bc0909b,
+        type: 3}
+      propertyPath: ViewRadius
+      value: 8.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 5298906266676669794, guid: da3567dda5fa5fa419eddafa1bc0909b,
+        type: 3}
+      propertyPath: DetectedMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 6ae2cc1519fcedb4ba64b1cf2d8eb98b, type: 2}
+    - target: {fileID: 5298906266676669794, guid: da3567dda5fa5fa419eddafa1bc0909b,
+        type: 3}
+      propertyPath: CurrentMeshRenderer
+      value: 
+      objectReference: {fileID: 324382332}
+    - target: {fileID: 5298906266676669794, guid: da3567dda5fa5fa419eddafa1bc0909b,
+        type: 3}
+      propertyPath: NotDetectedMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 84666b39e32ad8a4e8bc1f377d71c467, type: 2}
+    - target: {fileID: 5298906266676669794, guid: da3567dda5fa5fa419eddafa1bc0909b,
+        type: 3}
+      propertyPath: DetectionEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5298906266676669794, guid: da3567dda5fa5fa419eddafa1bc0909b,
+        type: 3}
+      propertyPath: DetectionEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5298906266676669794, guid: da3567dda5fa5fa419eddafa1bc0909b,
+        type: 3}
+      propertyPath: DetectionEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7873583333332341381, guid: da3567dda5fa5fa419eddafa1bc0909b,
         type: 3}
