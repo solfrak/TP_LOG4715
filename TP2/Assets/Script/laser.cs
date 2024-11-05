@@ -9,13 +9,7 @@ public class laser : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
-
-            if (playerHealth != null)
-            {
-                //playerHealth.TakeDamage(playerHealth.maxHealth);
-                trigger.Invoke();
-            }
+            trigger?.Invoke();
         }
     }
 }
