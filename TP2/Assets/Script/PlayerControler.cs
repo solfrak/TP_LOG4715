@@ -6,8 +6,6 @@ public class PlayerControler : MonoBehaviour
 {
     // Constants
     private static readonly Vector3 FlipRotation = new Vector3(0, 180, 0);
-    private static readonly Vector3 CameraPosition = new Vector3(10, 1, 0);
-    private static readonly Vector3 InverseCameraPosition = new Vector3(-10, 1, 0);
 
     // Variables
     bool _Grounded { get; set; }
@@ -24,7 +22,6 @@ public class PlayerControler : MonoBehaviour
     Animator _Anim { get; set; }
     Rigidbody _Rb { get; set; }
     CollisionChecker _GroundChecker { get; set; }
-    Camera _MainCamera { get; set; }
 
     // Exposed Variables
     [Header("Energy")]
@@ -79,7 +76,6 @@ public class PlayerControler : MonoBehaviour
         _Anim = GetComponent<Animator>();
         _Rb = GetComponent<Rigidbody>();
         _GroundChecker = GetComponent<CollisionChecker>();
-        _MainCamera = Camera.main;
     }
 
     // Utile pour régler des valeurs aux objets
@@ -228,15 +224,11 @@ public class PlayerControler : MonoBehaviour
         {
             _Flipped = true;
             transform.Rotate(FlipRotation);
-            _MainCamera.transform.Rotate(-FlipRotation);
-            _MainCamera.transform.localPosition = InverseCameraPosition;
         }
         else if (horizontal > 0 && _Flipped)
         {
             _Flipped = false;
             transform.Rotate(-FlipRotation);
-            _MainCamera.transform.Rotate(FlipRotation);
-            _MainCamera.transform.localPosition = CameraPosition;
         }
     }
 

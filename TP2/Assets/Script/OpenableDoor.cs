@@ -43,7 +43,7 @@ public class OpenableDoor : MonoBehaviour
         while((transform.position - destination).magnitude > tolerance)
         {
             Vector3 direction = (destination - transform.position).normalized;
-            transform.Translate(Time.deltaTime * openingSpeed * direction);
+            transform.Translate(Time.deltaTime * openingSpeed * direction, Space.World);
             yield return null;
         }
 
@@ -58,6 +58,6 @@ public class OpenableDoor : MonoBehaviour
         {
             return;
         }
-        Gizmos.DrawWireMesh(meshFilter.sharedMesh, transform.position + openedPositionRelative, Quaternion.identity, transform.lossyScale);
+        Gizmos.DrawWireMesh(meshFilter.sharedMesh, transform.position + openedPositionRelative, transform.rotation, transform.lossyScale);
     }
 }
