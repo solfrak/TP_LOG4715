@@ -579,6 +579,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BitCoin_LowPoly (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1501661792586424199, guid: 9132d871722e07c4b9fed526a7d05e95,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 44dc3746219aab94797370514f51f362, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1747,6 +1752,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BitCoin_LowPoly
       objectReference: {fileID: 0}
+    - target: {fileID: 1501661792586424199, guid: 9132d871722e07c4b9fed526a7d05e95,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: f7c6aa3153fda7a4291f835bbf862ec7, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
