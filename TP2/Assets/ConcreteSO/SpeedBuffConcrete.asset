@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ebe4e6ecde3406e8895d842d129d916, type: 3}
-  m_Name: DefaultMovementBuff
+  m_Script: {fileID: 11500000, guid: 7ef3264beb85474428b71107e0b6838f, type: 3}
+  m_Name: SpeedBuffConcrete
   m_EditorClassIdentifier: 
   Cost: 10
-  jumpForceAdded: 2
-  moveSpeedAdded: 3
+  speeForceAdded: 3

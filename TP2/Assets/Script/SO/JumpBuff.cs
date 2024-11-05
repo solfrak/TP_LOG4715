@@ -1,11 +1,10 @@
 ﻿
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "PowerUpSO", menuName = "PowerUp/MovementBuff")]
-public class MouvementBuff : PowerUpSO
+[CreateAssetMenu(fileName = "PowerUpSO", menuName = "PowerUp/JumpBuff")]
+public class JumpBuff : PowerUpSO
 {
     public float jumpForceAdded;
-    public float moveSpeedAdded;
     
     public override void Apply(GameObject target)
     {
@@ -13,7 +12,6 @@ public class MouvementBuff : PowerUpSO
 
         if (controller)
         {
-            controller.moveSpeed += moveSpeedAdded;
             controller.jumpForce += jumpForceAdded;
         }
     }
