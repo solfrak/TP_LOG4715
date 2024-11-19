@@ -6,6 +6,8 @@ public class PlayerControler : MonoBehaviour
 {
     // Constants
     private static readonly Vector3 FlipRotation = new Vector3(0, 180, 0);
+    public AudioManager m_AudioManager;
+    public AudioClip m_JumpSFX;
 
     // Variables
     bool _Grounded { get; set; }
@@ -159,6 +161,7 @@ public class PlayerControler : MonoBehaviour
                 _Grounded = false;
                 _Anim.SetBool("Grounded", false);
                 _Anim.SetBool("Jump", true);
+                m_AudioManager.PlaySFX(m_JumpSFX);
             }
             // Wall jump
             else if(_IsInContactWithLeftWall || _IsInContactWithRightWall && (_energyBarSo  == null || _energyBarSo.HasEnoughEnergy(CostJump)))
