@@ -1,16 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
+
 
 public class PlayerControler : MonoBehaviour
 {
+    enum SFX_Sound
+    {
+        Jump,
+        DoubleJump,
+        WallJump,
+        HitGround,
+        Error,
+    }
     // Constants
     private static readonly Vector3 FlipRotation = new Vector3(0, 180, 0);
-    public AudioManager m_AudioManager;
-    public AudioClip m_JumpSFX;
+    
+    public AudioSource m_AudioSource;
+    public List<AudioClip> AudioClips = new List<AudioClip>();
 
     // Variables
     bool _Grounded { get; set; }
+    private bool _CanHitGround { get; set; }
     bool _Flipped { get; set; }
     bool _IsInContactWithLeftWall { get; set; }
     bool _IsInContactWithRightWall { get; set; }
@@ -28,9 +40,12 @@ public class PlayerControler : MonoBehaviour
     // Exposed Variables
     [Header("Energy")]
     [SerializeField]
-    private EnergyBarSO _energyBarSo;
+    private EnergyBarSO energyBarSo;
 
     [SerializeField] private float CostJump;
+    [FormerlySerializedAs("DoubleJump")] [SerializeField] private float costDoubleJump;
+    [FormerlySerializedAs("WallJump")] [SerializeField] private float costWallJump;
+    
 
     [Header("Movement")]
     
@@ -84,6 +99,7 @@ public class PlayerControler : MonoBehaviour
     void Start()
     {
         _Grounded = false;
+        _CanHitGround = false;
         _IsInContactWithLeftWall = false;
         _IsInContactWithRightWall = false;
         _IsInContactWithRightWallNext = false;
@@ -137,8 +153,7 @@ public class PlayerControler : MonoBehaviour
     {
         // Additionnal jump force
         float maxAdditionalJumpForce = chargingJumpForcePerSecond * chargedJumpDuration;
-        if(!_Grounded
-            && _TotalChargedJumpForce < maxAdditionalJumpForce)
+        if(!_Grounded && _TotalChargedJumpForce < maxAdditionalJumpForce)
         {
             if(Input.GetButton("Jump"))
             {
@@ -161,38 +176,57 @@ public class PlayerControler : MonoBehaviour
                 _Grounded = false;
                 _Anim.SetBool("Grounded", false);
                 _Anim.SetBool("Jump", true);
-                m_AudioManager.PlaySFX(m_JumpSFX);
+                m_AudioSource.PlayOneShot(AudioClips[(int)SFX_Sound.Jump]);
             }
             // Wall jump
-            else if(_IsInContactWithLeftWall || _IsInContactWithRightWall && (_energyBarSo  == null || _energyBarSo.HasEnoughEnergy(CostJump)))
+            else if(_IsInContactWithLeftWall || _IsInContactWithRightWall)
             {
-                float signedWallJumpHorizontalForce = _IsInContactWithLeftWall ? wallJumpHorizontalForce : -wallJumpHorizontalForce;
 
-                // Reset velocity to make the aerial jump consistent
-                _Rb.linearVelocity = new Vector3(_Rb.linearVelocity.x, 0f, 0f);
-                _Rb.AddForce(new Vector3(0f, wallJumpVerticalForce, signedWallJumpHorizontalForce), ForceMode.Impulse);
+                if (energyBarSo.HasEnoughEnergy(costWallJump))
+                {
+                    float signedWallJumpHorizontalForce = _IsInContactWithLeftWall ? wallJumpHorizontalForce : -wallJumpHorizontalForce;
 
-                _TimeSinceWallJumpStart = 0f;
-                _Grounded = false;
-                _Anim.SetBool("Grounded", false);
-                _Anim.SetBool("Jump", true);
-                _energyBarSo?.UpdateEnergy(CostJump);
+                    // Reset velocity to make the aerial jump consistent
+                    _Rb.linearVelocity = new Vector3(_Rb.linearVelocity.x, 0f, 0f);
+                    _Rb.AddForce(new Vector3(0f, wallJumpVerticalForce, signedWallJumpHorizontalForce), ForceMode.Impulse);
+                    m_AudioSource.PlayOneShot(AudioClips[(int)SFX_Sound.WallJump]);
+
+                    _TimeSinceWallJumpStart = 0f;
+                    _Grounded = false;
+                    _Anim.SetBool("Grounded", false);
+                    _Anim.SetBool("Jump", true);
+                    energyBarSo?.UpdateEnergy(costWallJump);
+                }
+                else
+                {
+                    PlayErrorSound();
+                }
+                
             }
             // Aerial Jumps
             else if(_NbAerialJumpsUsed < nbAerialJumpsMax
-                && _TimeSinceLastAerialJump > timeBetweenAerialJumpsMin && (_energyBarSo  == null || _energyBarSo.HasEnoughEnergy(CostJump)))
+                && _TimeSinceLastAerialJump > timeBetweenAerialJumpsMin )
             {
-                // Reset vertical velocity to make the aerial jump consistent
-                _Rb.linearVelocity = new Vector3(_Rb.linearVelocity.x, 0f, _Rb.linearVelocity.z);
-                _Rb.AddForce(new Vector3(0f, aerialJumpForce, 0f), ForceMode.Impulse);
+                if (energyBarSo == null || energyBarSo.HasEnoughEnergy(costDoubleJump))
+                {
+                    // Reset vertical velocity to make the aerial jump consistent
+                    _Rb.linearVelocity = new Vector3(_Rb.linearVelocity.x, 0f, _Rb.linearVelocity.z);
+                    _Rb.AddForce(new Vector3(0f, aerialJumpForce, 0f), ForceMode.Impulse);
+                    m_AudioSource.PlayOneShot(AudioClips[(int)SFX_Sound.DoubleJump]);
 
-                _Grounded = false;
-                _Anim.SetBool("Grounded", false);
-                _Anim.SetBool("Jump", true);
+                    _Grounded = false;
+                    _Anim.SetBool("Grounded", false);
+                    _Anim.SetBool("Jump", true);
+                
 
-                _NbAerialJumpsUsed++;
-                _TimeSinceLastAerialJump = 0f;
-                _energyBarSo?.UpdateEnergy(CostJump);
+                    _NbAerialJumpsUsed++;
+                    _TimeSinceLastAerialJump = 0f;
+                    energyBarSo?.UpdateEnergy(costDoubleJump);
+                }
+                else
+                {
+                    PlayErrorSound();
+                }
             }
         }
 
@@ -200,6 +234,24 @@ public class PlayerControler : MonoBehaviour
         {
             _TotalChargedJumpForce = 0f;
         }
+
+        if (_CanHitGround && _GroundChecker.IsInContact())
+        {
+            _CanHitGround = false;
+            m_AudioSource.PlayOneShot(AudioClips[(int)SFX_Sound.HitGround]);
+        }
+        else if(!_GroundChecker.IsInContact())
+        {
+            _CanHitGround = true;
+        }
+        
+        
+        
+    }
+
+    private void PlayErrorSound()
+    {
+        m_AudioSource.PlayOneShot(AudioClips[(int)SFX_Sound.Error]);
     }
 
     void CheckState()
