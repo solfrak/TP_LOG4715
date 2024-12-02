@@ -14,6 +14,10 @@ public class Invisibility : MonoBehaviour
     public SkinnedMeshRenderer m_MeshRenderer;
     public Material head_material;
     public Material body_material;
+
+    public AudioSource m_AudioSource;
+    public AudioClip m_SFXInvisible;
+    public AudioClip m_SFXVisible;
     
     public bool IsInvisible
     {
@@ -48,7 +52,6 @@ public class Invisibility : MonoBehaviour
 
     void StartInvisibility()
     {
-        Debug.Log("Become invisible");
 
         Color color = m_MeshRenderer.material.color;
 
@@ -58,6 +61,7 @@ public class Invisibility : MonoBehaviour
         m_IsInvisible = true;
         m_CanBecomeInvisible = false;
         isInvisibleEvent?.Invoke();
+        m_AudioSource.PlayOneShot(m_SFXInvisible);
         StartCoroutine(Timer(InvisibleTime, StopInvisibility));
     }
 
@@ -67,6 +71,7 @@ public class Invisibility : MonoBehaviour
         m_MeshRenderer.materials[0].color = body_material.color;
         m_MeshRenderer.materials[1].color = head_material.color;
         m_IsInvisible = false;
+        m_AudioSource.PlayOneShot(m_SFXVisible);
         isVisibleEvent?.Invoke();
         StartCoroutine(Timer(InvisibleRestoreTime, RestoreAbility));
     }
