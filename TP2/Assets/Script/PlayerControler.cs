@@ -12,6 +12,7 @@ public class PlayerControler : MonoBehaviour
         DoubleJump,
         WallJump,
         HitGround,
+        Error,
     }
     // Constants
     private static readonly Vector3 FlipRotation = new Vector3(0, 180, 0);
@@ -42,8 +43,8 @@ public class PlayerControler : MonoBehaviour
     private EnergyBarSO energyBarSo;
 
     [SerializeField] private float CostJump;
-    [SerializeField] private float DoubleJump;
-    [SerializeField] private float WallJump;
+    [FormerlySerializedAs("DoubleJump")] [SerializeField] private float costDoubleJump;
+    [FormerlySerializedAs("WallJump")] [SerializeField] private float costWallJump;
     
 
     [Header("Movement")]
@@ -178,38 +179,54 @@ public class PlayerControler : MonoBehaviour
                 m_AudioSource.PlayOneShot(AudioClips[(int)SFX_Sound.Jump]);
             }
             // Wall jump
-            else if(_IsInContactWithLeftWall || _IsInContactWithRightWall && (energyBarSo  == null || energyBarSo.HasEnoughEnergy(CostJump)))
+            else if(_IsInContactWithLeftWall || _IsInContactWithRightWall)
             {
-                float signedWallJumpHorizontalForce = _IsInContactWithLeftWall ? wallJumpHorizontalForce : -wallJumpHorizontalForce;
 
-                // Reset velocity to make the aerial jump consistent
-                _Rb.linearVelocity = new Vector3(_Rb.linearVelocity.x, 0f, 0f);
-                _Rb.AddForce(new Vector3(0f, wallJumpVerticalForce, signedWallJumpHorizontalForce), ForceMode.Impulse);
-                m_AudioSource.PlayOneShot(AudioClips[(int)SFX_Sound.WallJump]);
+                if (energyBarSo.HasEnoughEnergy(costWallJump))
+                {
+                    float signedWallJumpHorizontalForce = _IsInContactWithLeftWall ? wallJumpHorizontalForce : -wallJumpHorizontalForce;
 
-                _TimeSinceWallJumpStart = 0f;
-                _Grounded = false;
-                _Anim.SetBool("Grounded", false);
-                _Anim.SetBool("Jump", true);
-                energyBarSo?.UpdateEnergy(CostJump);
+                    // Reset velocity to make the aerial jump consistent
+                    _Rb.linearVelocity = new Vector3(_Rb.linearVelocity.x, 0f, 0f);
+                    _Rb.AddForce(new Vector3(0f, wallJumpVerticalForce, signedWallJumpHorizontalForce), ForceMode.Impulse);
+                    m_AudioSource.PlayOneShot(AudioClips[(int)SFX_Sound.WallJump]);
+
+                    _TimeSinceWallJumpStart = 0f;
+                    _Grounded = false;
+                    _Anim.SetBool("Grounded", false);
+                    _Anim.SetBool("Jump", true);
+                    energyBarSo?.UpdateEnergy(costWallJump);
+                }
+                else
+                {
+                    PlayErrorSound();
+                }
+                
             }
             // Aerial Jumps
             else if(_NbAerialJumpsUsed < nbAerialJumpsMax
-                && _TimeSinceLastAerialJump > timeBetweenAerialJumpsMin && (energyBarSo  == null || energyBarSo.HasEnoughEnergy(CostJump)))
+                && _TimeSinceLastAerialJump > timeBetweenAerialJumpsMin )
             {
-                // Reset vertical velocity to make the aerial jump consistent
-                _Rb.linearVelocity = new Vector3(_Rb.linearVelocity.x, 0f, _Rb.linearVelocity.z);
-                _Rb.AddForce(new Vector3(0f, aerialJumpForce, 0f), ForceMode.Impulse);
-                m_AudioSource.PlayOneShot(AudioClips[(int)SFX_Sound.DoubleJump]);
+                if (energyBarSo == null || energyBarSo.HasEnoughEnergy(costDoubleJump))
+                {
+                    // Reset vertical velocity to make the aerial jump consistent
+                    _Rb.linearVelocity = new Vector3(_Rb.linearVelocity.x, 0f, _Rb.linearVelocity.z);
+                    _Rb.AddForce(new Vector3(0f, aerialJumpForce, 0f), ForceMode.Impulse);
+                    m_AudioSource.PlayOneShot(AudioClips[(int)SFX_Sound.DoubleJump]);
 
-                _Grounded = false;
-                _Anim.SetBool("Grounded", false);
-                _Anim.SetBool("Jump", true);
+                    _Grounded = false;
+                    _Anim.SetBool("Grounded", false);
+                    _Anim.SetBool("Jump", true);
                 
 
-                _NbAerialJumpsUsed++;
-                _TimeSinceLastAerialJump = 0f;
-                energyBarSo?.UpdateEnergy(CostJump);
+                    _NbAerialJumpsUsed++;
+                    _TimeSinceLastAerialJump = 0f;
+                    energyBarSo?.UpdateEnergy(costDoubleJump);
+                }
+                else
+                {
+                    PlayErrorSound();
+                }
             }
         }
 
@@ -230,6 +247,11 @@ public class PlayerControler : MonoBehaviour
         
         
         
+    }
+
+    private void PlayErrorSound()
+    {
+        m_AudioSource.PlayOneShot(AudioClips[(int)SFX_Sound.Error]);
     }
 
     void CheckState()

@@ -18,6 +18,10 @@ public class Invisibility : MonoBehaviour
     public AudioSource m_AudioSource;
     public AudioClip m_SFXInvisible;
     public AudioClip m_SFXVisible;
+    public AudioClip m_SFXNotEnoughEnergy;
+
+    public EnergyBarSO EnergyBarSo;
+    public float InvisibilityEnergyCost;
     
     public bool IsInvisible
     {
@@ -45,8 +49,16 @@ public class Invisibility : MonoBehaviour
     {
         if (m_CanBecomeInvisible && !m_IsInvisible && IsActionTrigger)
         {
-            //Trigger Invisibility
-            StartInvisibility();
+            if (EnergyBarSo.HasEnoughEnergy(InvisibilityEnergyCost))
+            {
+                EnergyBarSo.UpdateEnergy(InvisibilityEnergyCost);
+                //Trigger Invisibility
+                StartInvisibility();
+            }
+            else
+            {
+                m_AudioSource.PlayOneShot(m_SFXNotEnoughEnergy);
+            }
         }
     }
 

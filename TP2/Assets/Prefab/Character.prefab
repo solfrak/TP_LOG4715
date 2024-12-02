@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 2426060460401659469}
   - component: {fileID: 650370386688491865}
   - component: {fileID: 5921798570901568055}
+  - component: {fileID: 943766098475894736}
   m_Layer: 0
   m_Name: Character
   m_TagString: Player
@@ -280,7 +281,23 @@ MonoBehaviour:
   m_AudioSource: {fileID: 650370386688491865}
   m_SFXInvisible: {fileID: 8300000, guid: dd0d28f21a22ee94f92ffd0f1598e75d, type: 3}
   m_SFXVisible: {fileID: 0}
+  m_SFXNotEnoughEnergy: {fileID: 0}
+  EnergyBarSo: {fileID: 11400000, guid: 072aeaeb7329f034a8ee6740b59959ec, type: 2}
+  InvisibilityEnergyCost: -40
   m_IsInvisible: 0
+--- !u!114 &943766098475894736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7798410644028385277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd472282eca8e1743a9ff67345bc48c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _energy: {fileID: 11400000, guid: 072aeaeb7329f034a8ee6740b59959ec, type: 2}
 --- !u!1001 &3603279037260823891
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -464,10 +481,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f791b0ea7eca3804295b36a5faee8d3e, type: 3}
   - {fileID: 8300000, guid: 487690c37fa6c23499f4c1e6a96a5f7d, type: 3}
   - {fileID: 8300000, guid: 799afcc8f95ad6d48af6c8a4c7d16e72, type: 3}
-  energyBarSo: {fileID: 0}
+  - {fileID: 8300000, guid: 394cf3fb47983aa4b97ae504ad8ba509, type: 3}
+  energyBarSo: {fileID: 11400000, guid: 072aeaeb7329f034a8ee6740b59959ec, type: 2}
   CostJump: 0
-  DoubleJump: 0
-  WallJump: 0
+  costDoubleJump: -30
+  costWallJump: -30
   moveSpeed: 5
   jumpForce: 4
   chargedJumpDuration: 0.3
