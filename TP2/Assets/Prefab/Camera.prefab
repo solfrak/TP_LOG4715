@@ -47,9 +47,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ViewRadius: 10
-  CurrentMeshRenderer: {fileID: 0}
-  DetectedMaterial: {fileID: 0}
-  NotDetectedMaterial: {fileID: 0}
+  CurrentMeshRenderer: {fileID: 3887608955171514739}
+  DetectedMaterial: {fileID: 2100000, guid: 6ae2cc1519fcedb4ba64b1cf2d8eb98b, type: 2}
+  NotDetectedMaterial: {fileID: 2100000, guid: 84666b39e32ad8a4e8bc1f377d71c467, type: 2}
   ViewAngle: 45
   TimeBeforeDetecting: 1
   targetMask:
