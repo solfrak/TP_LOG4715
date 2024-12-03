@@ -4,6 +4,9 @@ using UnityEngine.Events;
 [RequireComponent(typeof(CollisionChecker))]
 public class InteractableButton : MonoBehaviour
 {
+    [SerializeField]
+    AudioClip pressedSound;
+
     bool pressed = false;
     CollisionChecker collisionChecker;
 
@@ -28,6 +31,8 @@ public class InteractableButton : MonoBehaviour
         {
             return;
         }
+
+        FindAnyObjectByType<AudioManager>()?.PlaySFX(pressedSound);
         OnPressed?.Invoke();
     }
 }

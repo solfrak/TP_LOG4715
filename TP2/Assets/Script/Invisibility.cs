@@ -14,6 +14,14 @@ public class Invisibility : MonoBehaviour
     public SkinnedMeshRenderer m_MeshRenderer;
     public Material head_material;
     public Material body_material;
+
+    public AudioSource m_AudioSource;
+    public AudioClip m_SFXInvisible;
+    public AudioClip m_SFXVisible;
+    public AudioClip m_SFXNotEnoughEnergy;
+
+    public EnergyBarSO EnergyBarSo;
+    public float InvisibilityEnergyCost;
     
     public bool IsInvisible
     {
@@ -41,14 +49,21 @@ public class Invisibility : MonoBehaviour
     {
         if (m_CanBecomeInvisible && !m_IsInvisible && IsActionTrigger)
         {
-            //Trigger Invisibility
-            StartInvisibility();
+            if (EnergyBarSo.HasEnoughEnergy(InvisibilityEnergyCost))
+            {
+                EnergyBarSo.UpdateEnergy(InvisibilityEnergyCost);
+                //Trigger Invisibility
+                StartInvisibility();
+            }
+            else
+            {
+                m_AudioSource.PlayOneShot(m_SFXNotEnoughEnergy);
+            }
         }
     }
 
     void StartInvisibility()
     {
-        Debug.Log("Become invisible");
 
         Color color = m_MeshRenderer.material.color;
 
@@ -58,6 +73,7 @@ public class Invisibility : MonoBehaviour
         m_IsInvisible = true;
         m_CanBecomeInvisible = false;
         isInvisibleEvent?.Invoke();
+        m_AudioSource.PlayOneShot(m_SFXInvisible);
         StartCoroutine(Timer(InvisibleTime, StopInvisibility));
     }
 
@@ -67,6 +83,7 @@ public class Invisibility : MonoBehaviour
         m_MeshRenderer.materials[0].color = body_material.color;
         m_MeshRenderer.materials[1].color = head_material.color;
         m_IsInvisible = false;
+        m_AudioSource.PlayOneShot(m_SFXVisible);
         isVisibleEvent?.Invoke();
         StartCoroutine(Timer(InvisibleRestoreTime, RestoreAbility));
     }

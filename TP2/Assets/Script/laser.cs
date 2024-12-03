@@ -8,7 +8,7 @@ public class laser : MonoBehaviour
     bool isLaserActive;
 
 
-    public UnityEvent trigger;
+    public UnityEvent HitEvent;
 
     private void Start()
     {
@@ -31,7 +31,7 @@ public class laser : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            trigger?.Invoke();
+            HitEvent?.Invoke();
         }
     }
 }

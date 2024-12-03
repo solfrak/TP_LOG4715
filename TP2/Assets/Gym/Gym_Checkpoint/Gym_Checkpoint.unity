@@ -799,7 +799,7 @@ BoxCollider:
   m_Material: {fileID: 13400000, guid: eb535d441884b784492d6b42c8ebcadf, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1271,6 +1271,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6246717345569697568, guid: 51519f9cfc5beaf4d9e53a8bcc7c0ee9,
+        type: 3}
+      propertyPath: m_Checkpoints.Array.size
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6246717345569697568, guid: 51519f9cfc5beaf4d9e53a8bcc7c0ee9,
         type: 3}
