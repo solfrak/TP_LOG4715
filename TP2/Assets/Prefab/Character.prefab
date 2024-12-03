@@ -279,9 +279,10 @@ MonoBehaviour:
   head_material: {fileID: 2100000, guid: e639426dff5dcfa40bf254c0ffc5f841, type: 2}
   body_material: {fileID: 2100000, guid: 8d74c62051dcbe24eb59170e3cceb73e, type: 2}
   m_AudioSource: {fileID: 650370386688491865}
-  m_SFXInvisible: {fileID: 8300000, guid: dd0d28f21a22ee94f92ffd0f1598e75d, type: 3}
+  m_SFXInvisible: {fileID: 8300000, guid: b33d4f717542d2742a9db72dabac72de, type: 3}
   m_SFXVisible: {fileID: 0}
-  m_SFXNotEnoughEnergy: {fileID: 0}
+  m_SFXNotEnoughEnergy: {fileID: 8300000, guid: 06268fa3f996a3a4cb9033ccf8e21146,
+    type: 3}
   EnergyBarSo: {fileID: 11400000, guid: 072aeaeb7329f034a8ee6740b59959ec, type: 2}
   InvisibilityEnergyCost: -40
   m_IsInvisible: 0
