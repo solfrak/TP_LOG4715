@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 public class Invisibility : MonoBehaviour
 {
@@ -11,7 +13,11 @@ public class Invisibility : MonoBehaviour
     public UnityEvent isInvisibleEvent;
     public UnityEvent isVisibleEvent;
 
-    public SkinnedMeshRenderer m_MeshRenderer;
+    // public SkinnedMeshRenderer m_MeshRenderer;
+
+    public List<SkinnedMeshRenderer> m_MeshRenderers;
+    public List<Material> m_Materials;
+    
     public Material head_material;
     public Material body_material;
 
@@ -65,10 +71,15 @@ public class Invisibility : MonoBehaviour
     void StartInvisibility()
     {
 
-        Color color = m_MeshRenderer.material.color;
+        // Color color = m_MeshRenderer.material.color;
 
-        m_MeshRenderer.materials[0].color = Color.gray;
-        m_MeshRenderer.materials[1].color = Color.gray;
+
+        for (int i = 0; i < m_MeshRenderers.Count; i++)
+        {
+            m_MeshRenderers[i].materials[0].color = Color.gray;
+        }
+        // m_MeshRenderer.materials[0].color = Color.gray;
+        // m_MeshRenderer.materials[1].color = Color.gray;
         //Change some stuff
         m_IsInvisible = true;
         m_CanBecomeInvisible = false;
@@ -80,8 +91,12 @@ public class Invisibility : MonoBehaviour
     void StopInvisibility()
     {
         Debug.Log("Become visible");
-        m_MeshRenderer.materials[0].color = body_material.color;
-        m_MeshRenderer.materials[1].color = head_material.color;
+        for (int i = 0; i < m_MeshRenderers.Count; i++)
+        {
+            m_MeshRenderers[i].materials[0].color = m_Materials[i].color;
+        }
+        // m_MeshRenderer.materials[0].color = body_material.color;
+        // m_MeshRenderer.materials[1].color = head_material.color;
         m_IsInvisible = false;
         m_AudioSource.PlayOneShot(m_SFXVisible);
         isVisibleEvent?.Invoke();
