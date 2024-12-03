@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Runtime.InteropServices;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Events;
@@ -101,20 +102,29 @@ public class FieldOfView : MonoBehaviour
                         DetectionEvent?.Invoke(targetsInViewRadius[i].gameObject, IsDetected);
                     }
                 }
+                else
+                {
+                    TurnOffDetection(targetsInViewRadius[i]);
+                }
             }
             else
             {
                 // If was it was detected
-                if(IsDetected)
-                {
-                    DetectionEvent?.Invoke(targetsInViewRadius[i].gameObject, false);
-                }
-
-                IsDetected = false;
-                isInRange = false;
-                timeDetectedPlayer = 0f;
+                TurnOffDetection(targetsInViewRadius[i]);
             }
         }
+    }
+
+    private void TurnOffDetection(Collider target)
+    {
+        if(IsDetected)
+        {
+            DetectionEvent?.Invoke(target.gameObject, false);
+        }
+
+        IsDetected = false;
+        isInRange = false;
+        timeDetectedPlayer = 0f;
     }
 
     private GameObject GetParent(GameObject o)
