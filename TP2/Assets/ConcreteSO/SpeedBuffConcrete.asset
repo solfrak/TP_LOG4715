@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: SpeedBuffConcrete
   m_EditorClassIdentifier: 
   Cost: 10
-  speeForceAdded: 3
+  speeForceAdded: 2

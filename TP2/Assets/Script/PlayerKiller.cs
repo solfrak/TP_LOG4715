@@ -12,8 +12,20 @@ public class PlayerKiller : MonoBehaviour
 
     PlayerControler player;
 
+    bool isPlayerDead = false;
+
+    private void Start()
+    {
+        isPlayerDead = false;
+    }
+
     public void KillPlayer()
     {
+        if(isPlayerDead)
+        {
+            return;
+        }
+        isPlayerDead = true;
         player = FindFirstObjectByType<PlayerControler>();
         player.gameObject.SetActive(false);
 

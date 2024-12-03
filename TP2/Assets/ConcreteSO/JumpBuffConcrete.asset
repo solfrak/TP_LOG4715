@@ -13,5 +13,4 @@ MonoBehaviour:
   m_Name: JumpBuffConcrete
   m_EditorClassIdentifier: 
   Cost: 10
-  jumpForceAdded: 2
-  moveSpeedAdded: 3
+  jumpForceAdded: 3
