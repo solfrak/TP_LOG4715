@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -28,7 +28,9 @@ public class PlayerControler : MonoBehaviour
     bool _IsInContactWithRightWall { get; set; }
     bool _IsInContactWithLeftWallNext { get; set; }
     bool _IsInContactWithRightWallNext { get; set; }
+    bool _IsWallJumping { get; set; }
     int _NbAerialJumpsUsed { get; set; }
+    float _LastFrameHorizontal { get; set; }
     float _TotalChargedJumpForce { get; set; }
     float _TimeSinceLastAerialJump { get; set; }
     float _TimeSinceWallJumpStart { get; set; }
@@ -104,6 +106,8 @@ public class PlayerControler : MonoBehaviour
         _IsInContactWithRightWall = false;
         _IsInContactWithRightWallNext = false;
         _IsInContactWithRightWallNext = false;
+        _IsWallJumping = false;
+        _LastFrameHorizontal = 0f;
         _TotalChargedJumpForce = 0f;
         _Flipped = false;
         _NbAerialJumpsUsed = 0;
@@ -117,9 +121,13 @@ public class PlayerControler : MonoBehaviour
         _TimeSinceLastAerialJump += Time.deltaTime;
         _TimeSinceWallJumpStart += Time.deltaTime;
         var horizontal = Input.GetAxis("Horizontal") * moveSpeed;
+        _IsWallJumping = _TimeSinceWallJumpStart <= wallJumpDuration || 
+            _IsWallJumping && Mathf.Abs(horizontal) <= Mathf.Abs(_LastFrameHorizontal)
+            && Mathf.Abs(horizontal) != moveSpeed;
         HorizontalMove(horizontal);
         FlipCharacter(horizontal);
         CheckJump();
+        _LastFrameHorizontal = horizontal;
     }
 
     void FixedUpdate()
@@ -130,7 +138,7 @@ public class PlayerControler : MonoBehaviour
     // Handles horizontal movement
     void HorizontalMove(float horizontal)
     {
-        if(_TimeSinceWallJumpStart <= wallJumpDuration)
+        if(_IsWallJumping)
         {
             return;
         }    
@@ -192,6 +200,7 @@ public class PlayerControler : MonoBehaviour
                     m_AudioSource.PlayOneShot(AudioClips[(int)SFX_Sound.WallJump]);
 
                     _TimeSinceWallJumpStart = 0f;
+                    _IsWallJumping = true;
                     _Grounded = false;
                     _Anim.SetBool("Grounded", false);
                     _Anim.SetBool("Jump", true);
@@ -264,13 +273,14 @@ public class PlayerControler : MonoBehaviour
         {
             _NbAerialJumpsUsed = 0;
             _TimeSinceLastAerialJump = timeBetweenAerialJumpsMin;
+            _IsWallJumping = false;
         }
+
         _Anim.SetBool("Grounded", _Grounded);
 
         _IsInContactWithLeftWallNext = false;
         _IsInContactWithRightWallNext = false;
     }
-
 
     // Handles the character flip and the camera
     void FlipCharacter(float horizontal)
