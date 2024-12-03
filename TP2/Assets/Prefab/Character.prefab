@@ -298,6 +298,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _energy: {fileID: 11400000, guid: 072aeaeb7329f034a8ee6740b59959ec, type: 2}
+  collectedTokenEvent: {fileID: 11400000, guid: 436f292df20a5f34d8c78a9ec6aae2f3,
+    type: 2}
+  tokenStaminaGain: 35
 --- !u!1001 &3603279037260823891
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -477,11 +480,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AudioSource: {fileID: 650370386688491865}
   AudioClips:
-  - {fileID: 8300000, guid: 2356cce331014f441a8a6cd4f297fd76, type: 3}
-  - {fileID: 8300000, guid: f791b0ea7eca3804295b36a5faee8d3e, type: 3}
-  - {fileID: 8300000, guid: 487690c37fa6c23499f4c1e6a96a5f7d, type: 3}
-  - {fileID: 8300000, guid: 799afcc8f95ad6d48af6c8a4c7d16e72, type: 3}
-  - {fileID: 8300000, guid: 394cf3fb47983aa4b97ae504ad8ba509, type: 3}
+  - {fileID: 8300000, guid: ae6720ac03b5cb14899c712f590d289b, type: 3}
+  - {fileID: 8300000, guid: ae6720ac03b5cb14899c712f590d289b, type: 3}
+  - {fileID: 8300000, guid: ae6720ac03b5cb14899c712f590d289b, type: 3}
+  - {fileID: 8300000, guid: b77c18fad0e18264aa49b8d4d22898e5, type: 3}
+  - {fileID: 8300000, guid: b88fde56aec3d0d47824e7cf446ca635, type: 3}
   energyBarSo: {fileID: 11400000, guid: 072aeaeb7329f034a8ee6740b59959ec, type: 2}
   CostJump: 0
   costDoubleJump: -30

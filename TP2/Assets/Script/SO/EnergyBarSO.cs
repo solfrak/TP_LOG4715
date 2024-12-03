@@ -21,7 +21,7 @@ public class EnergyBarSO : ScriptableObject
 
     private void OnEnable()
     {
-        CurrentEnergy = 0;
+        CurrentEnergy = (MaxEnergy - MinEnergy) / 2;
     }
 
     public void UpdateEnergy(float value)

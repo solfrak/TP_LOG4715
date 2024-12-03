@@ -5,7 +5,10 @@ using UnityEngine.SceneManagement;
 public class PlayerKiller : MonoBehaviour
 {
     [SerializeField, Min(0f)]
-    float waitTimeBeforeRestart = 1f;
+    float waitTimeBeforeRestart = 2f;
+
+    [SerializeField]
+    AudioClip playerDeathSFX;
 
     PlayerControler player;
 
@@ -13,6 +16,8 @@ public class PlayerKiller : MonoBehaviour
     {
         player = FindFirstObjectByType<PlayerControler>();
         player.gameObject.SetActive(false);
+
+        FindAnyObjectByType<AudioManager>()?.PlaySFX(playerDeathSFX);
 
         StartCoroutine(RestartScene());
     }

@@ -169,6 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76319ec9322e30547a6721337afc64ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pressedSound: {fileID: 8300000, guid: aabbaa8f1af00034383b82dbac034987, type: 3}
   OnPressed:
     m_PersistentCalls:
       m_Calls:

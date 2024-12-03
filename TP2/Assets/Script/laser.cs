@@ -7,12 +7,19 @@ public class laser : MonoBehaviour
     [SerializeField]
     bool isLaserActive;
 
+    [SerializeField]
+    AudioClip laserActivatesSFX;
+
+    bool playSoundWhenActivating = false;
 
     public UnityEvent HitEvent;
 
     private void Start()
     {
         SetLaserState(isLaserActive);
+
+        // Avoid playing the sound when the laser inits
+        playSoundWhenActivating = true;
     }
 
     public bool IsLaserActive {
@@ -25,6 +32,11 @@ public class laser : MonoBehaviour
     {
         IsLaserActive = state;
         gameObject.SetActive(isLaserActive);
+
+        if(state && playSoundWhenActivating)
+        {
+            FindAnyObjectByType<AudioManager>()?.PlaySFX(laserActivatesSFX);
+        }
     }
 
     private void OnTriggerEnter(Collider other)

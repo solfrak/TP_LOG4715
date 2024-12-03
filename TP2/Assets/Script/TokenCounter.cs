@@ -8,14 +8,16 @@ public class TokenCounter : MonoBehaviour
     public int TokenCount { get; private set; }
     public int TotalCount { get; private set; }
 
-
-    void Start()
+    private void Awake()
     {
         CollectableToken[] tokens = FindObjectsByType<CollectableToken>(FindObjectsSortMode.None);
 
         TotalCount = tokens.Length;
         TokenCount = 0;
+    }
 
+    void Start()
+    {
         collectedTokenEventSO.OnCollectedToken.AddListener(OnCollectedToken);
     }
 

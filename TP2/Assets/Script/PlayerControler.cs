@@ -47,7 +47,6 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] private float CostJump;
     [FormerlySerializedAs("DoubleJump")] [SerializeField] private float costDoubleJump;
     [FormerlySerializedAs("WallJump")] [SerializeField] private float costWallJump;
-    
 
     [Header("Movement")]
     

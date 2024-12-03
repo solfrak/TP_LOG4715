@@ -36,6 +36,7 @@ public class CollectableToken : MonoBehaviour
 
         collected = true;
         collectedTokenEventSO.Increase(1);
+        FindAnyObjectByType<AudioManager>()?.PlaySFX(collectedSound);
         Destroy(gameObject);
     }
 

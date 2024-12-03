@@ -15,4 +15,4 @@ MonoBehaviour:
   MaxEnergy: 100
   MinEnergy: 0
   EnergyRestoreSpeed: 10
-  CurrentEnergy: 5.639995
+  CurrentEnergy: 100
