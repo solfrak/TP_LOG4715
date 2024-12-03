@@ -32,6 +32,7 @@ public class InteractableButton : MonoBehaviour
             return;
         }
 
+        pressed = true;
         FindAnyObjectByType<AudioManager>()?.PlaySFX(pressedSound);
         OnPressed?.Invoke();
     }
