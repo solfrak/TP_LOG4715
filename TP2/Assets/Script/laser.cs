@@ -1,6 +1,6 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.SceneManagement;
 
 public class laser : MonoBehaviour
 {
@@ -8,9 +8,14 @@ public class laser : MonoBehaviour
     bool isLaserActive;
 
     [SerializeField]
+    float timeBeforeStopping = 0f;
+
+    [SerializeField]
     AudioClip laserActivatesSFX;
 
     bool playSoundWhenActivating = false;
+
+    bool isLaserClosing = false;
 
     public UnityEvent HitEvent;
 
@@ -30,12 +35,38 @@ public class laser : MonoBehaviour
 
     public void SetLaserState(bool state)
     {
-        IsLaserActive = state;
-        gameObject.SetActive(isLaserActive);
-
-        if(state && playSoundWhenActivating)
+        if(!IsLaserActive && state && playSoundWhenActivating)
         {
             FindAnyObjectByType<AudioManager>()?.PlaySFX(laserActivatesSFX);
+        }
+        if(state)
+        {
+            isLaserClosing = false;
+        }
+        IsLaserActive = state;
+        gameObject.SetActive(isLaserActive);
+    }
+
+    public void SetLaserByDetection(GameObject obj, bool state)
+    {
+        if(state)
+        {
+            SetLaserState(state);
+        }
+        else
+        {
+            isLaserClosing = true;
+            StartCoroutine(SetStateAfterTime(state, timeBeforeStopping));
+        }
+    }
+
+    private IEnumerator SetStateAfterTime(bool state, float time)
+    {
+        yield return new WaitForSeconds(time);
+        bool isLaserStillClosing = isLaserClosing && !state;
+        if(isLaserClosing || state)
+        {
+            SetLaserState(state);
         }
     }
 

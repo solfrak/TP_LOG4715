@@ -122,6 +122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isLaserActive: 0
+  timeBeforeStopping: 1
   laserActivatesSFX: {fileID: 8300000, guid: e85a6aa91d6aa694ca9e52e17de1991d, type: 3}
   HitEvent:
     m_PersistentCalls:

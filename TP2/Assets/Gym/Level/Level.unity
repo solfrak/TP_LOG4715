@@ -864,11 +864,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5298906266676669794, guid: da3567dda5fa5fa419eddafa1bc0909b,
         type: 3}
-      propertyPath: TimeBeforeDetecting
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5298906266676669794, guid: da3567dda5fa5fa419eddafa1bc0909b,
-        type: 3}
       propertyPath: DetectionEvent.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -7631,7 +7626,7 @@ PrefabInstance:
     - target: {fileID: 5298906266676669794, guid: da3567dda5fa5fa419eddafa1bc0909b,
         type: 3}
       propertyPath: TimeBeforeDetecting
-      value: 1.5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5298906266676669794, guid: da3567dda5fa5fa419eddafa1bc0909b,
         type: 3}
@@ -7641,7 +7636,7 @@ PrefabInstance:
     - target: {fileID: 5298906266676669794, guid: da3567dda5fa5fa419eddafa1bc0909b,
         type: 3}
       propertyPath: DetectionEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5298906266676669794, guid: da3567dda5fa5fa419eddafa1bc0909b,
         type: 3}
@@ -7656,7 +7651,7 @@ PrefabInstance:
     - target: {fileID: 5298906266676669794, guid: da3567dda5fa5fa419eddafa1bc0909b,
         type: 3}
       propertyPath: DetectionEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetLaserState
+      value: SetLaserByDetection
       objectReference: {fileID: 0}
     - target: {fileID: 5298906266676669794, guid: da3567dda5fa5fa419eddafa1bc0909b,
         type: 3}
@@ -9227,18 +9222,28 @@ PrefabInstance:
       objectReference: {fileID: 1957492901}
     - target: {fileID: 5298906266676669794, guid: da3567dda5fa5fa419eddafa1bc0909b,
         type: 3}
+      propertyPath: TimeBeforeDetecting
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5298906266676669794, guid: da3567dda5fa5fa419eddafa1bc0909b,
+        type: 3}
+      propertyPath: obstacleMask.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 5298906266676669794, guid: da3567dda5fa5fa419eddafa1bc0909b,
+        type: 3}
       propertyPath: DetectionEvent.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5298906266676669794, guid: da3567dda5fa5fa419eddafa1bc0909b,
         type: 3}
       propertyPath: DetectionEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5298906266676669794, guid: da3567dda5fa5fa419eddafa1bc0909b,
         type: 3}
       propertyPath: DetectionEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5298906266676669794, guid: da3567dda5fa5fa419eddafa1bc0909b,
         type: 3}
@@ -9249,7 +9254,7 @@ PrefabInstance:
         type: 3}
       propertyPath: DetectionEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1901965616}
+      objectReference: {fileID: 624706682}
     - target: {fileID: 5298906266676669794, guid: da3567dda5fa5fa419eddafa1bc0909b,
         type: 3}
       propertyPath: DetectionEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -9263,12 +9268,12 @@ PrefabInstance:
     - target: {fileID: 5298906266676669794, guid: da3567dda5fa5fa419eddafa1bc0909b,
         type: 3}
       propertyPath: DetectionEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetLaserState
+      value: SetLaserByDetection
       objectReference: {fileID: 0}
     - target: {fileID: 5298906266676669794, guid: da3567dda5fa5fa419eddafa1bc0909b,
         type: 3}
       propertyPath: DetectionEvent.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: test
+      value: OnSetLaserState
       objectReference: {fileID: 0}
     - target: {fileID: 5298906266676669794, guid: da3567dda5fa5fa419eddafa1bc0909b,
         type: 3}
@@ -9278,7 +9283,7 @@ PrefabInstance:
     - target: {fileID: 5298906266676669794, guid: da3567dda5fa5fa419eddafa1bc0909b,
         type: 3}
       propertyPath: DetectionEvent.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: FieldOfView, Assembly-CSharp
+      value: laser, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5298906266676669794, guid: da3567dda5fa5fa419eddafa1bc0909b,
         type: 3}
@@ -10953,7 +10958,7 @@ PrefabInstance:
     - target: {fileID: 5298906266676669794, guid: da3567dda5fa5fa419eddafa1bc0909b,
         type: 3}
       propertyPath: TimeBeforeDetecting
-      value: 1.5
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5298906266676669794, guid: da3567dda5fa5fa419eddafa1bc0909b,
         type: 3}
@@ -10963,7 +10968,7 @@ PrefabInstance:
     - target: {fileID: 5298906266676669794, guid: da3567dda5fa5fa419eddafa1bc0909b,
         type: 3}
       propertyPath: DetectionEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5298906266676669794, guid: da3567dda5fa5fa419eddafa1bc0909b,
         type: 3}
@@ -10978,7 +10983,7 @@ PrefabInstance:
     - target: {fileID: 5298906266676669794, guid: da3567dda5fa5fa419eddafa1bc0909b,
         type: 3}
       propertyPath: DetectionEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetLaserState
+      value: SetLaserByDetection
       objectReference: {fileID: 0}
     - target: {fileID: 5298906266676669794, guid: da3567dda5fa5fa419eddafa1bc0909b,
         type: 3}
@@ -13096,18 +13101,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 177767983}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1901965616 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5298906266676669794, guid: da3567dda5fa5fa419eddafa1bc0909b,
-    type: 3}
-  m_PrefabInstance: {fileID: 1399538522}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7727a022adcdcaf43a8530751766ac79, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1901965617 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2881357550160611191, guid: da3567dda5fa5fa419eddafa1bc0909b,
@@ -13554,12 +13547,12 @@ PrefabInstance:
     - target: {fileID: 2426060460401659469, guid: 15a8381cf63c99742a59a0d0ee019c3f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.59
+      value: 17.9
       objectReference: {fileID: 0}
     - target: {fileID: 2426060460401659469, guid: 15a8381cf63c99742a59a0d0ee019c3f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.11
+      value: 29.21
       objectReference: {fileID: 0}
     - target: {fileID: 2426060460401659469, guid: 15a8381cf63c99742a59a0d0ee019c3f,
         type: 3}

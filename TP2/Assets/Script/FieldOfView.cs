@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Events;
@@ -20,7 +21,7 @@ public class FieldOfView : MonoBehaviour
     public LayerMask targetMask;
     public LayerMask obstacleMask;
 
-    public UnityEvent<GameObject> DetectionEvent;
+    public UnityEvent<GameObject, bool> DetectionEvent;
 
     public bool IsInRange
     {
@@ -45,6 +46,9 @@ public class FieldOfView : MonoBehaviour
     public MeshFilter viewMeshFilter;
 
     private bool isInRange = false;
+    private GameObject detectedPlayer;
+    private float timeDetectedPlayer;
+
     Mesh viewMesh;
     private void Update()
     {
@@ -89,17 +93,26 @@ public class FieldOfView : MonoBehaviour
                 float dstToTarget = Vector3.Distance(transform.position, target.position);
                 if (!Physics.Raycast (transform.position, dirToTarget, dstToTarget, obstacleMask))
                 {
-                    if (!isInRange)
+                    timeDetectedPlayer += Time.deltaTime;
+                    CurrentMeshRenderer.material.color = Color.Lerp(NotDetectedMaterial.color, DetectedMaterial.color, timeDetectedPlayer / TimeBeforeDetecting);
+                    if(timeDetectedPlayer >= TimeBeforeDetecting && !IsDetected)
                     {
-                        isInRange = true;
-                        StartCoroutine(DalyBeforeDetecting(targetsInViewRadius[i].gameObject, invisibility));
+                        IsDetected = true;
+                        DetectionEvent?.Invoke(targetsInViewRadius[i].gameObject, IsDetected);
                     }
                 }
             }
             else
             {
+                // If was it was detected
+                if(IsDetected)
+                {
+                    DetectionEvent?.Invoke(targetsInViewRadius[i].gameObject, false);
+                }
+
                 IsDetected = false;
                 isInRange = false;
+                timeDetectedPlayer = 0f;
             }
         }
     }
@@ -113,17 +126,6 @@ public class FieldOfView : MonoBehaviour
         }
 
         return current;
-    }
-
-    IEnumerator DalyBeforeDetecting(GameObject gameObject, [CanBeNull] Invisibility invisibility)
-    {
-        yield return new WaitForSeconds(TimeBeforeDetecting);
-        bool isPlayerInvisible = invisibility && invisibility.IsInvisible;
-        if (isInRange && !isPlayerInvisible)
-        {
-            IsDetected = true;
-            DetectionEvent?.Invoke(gameObject);
-        }
     }
 
     private bool isDetected = false;
