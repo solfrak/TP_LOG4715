@@ -66,6 +66,13 @@ public class Invisibility : MonoBehaviour
                 m_AudioSource.PlayOneShot(m_SFXNotEnoughEnergy);
             }
         }
+        else
+        {
+            if (!m_CanBecomeInvisible && Input.GetKeyDown(KeyCode.E))
+            {
+                m_AudioSource.PlayOneShot(m_SFXNotEnoughEnergy);
+            }
+        }
     }
 
     void StartInvisibility()
@@ -98,7 +105,7 @@ public class Invisibility : MonoBehaviour
         // m_MeshRenderer.materials[0].color = body_material.color;
         // m_MeshRenderer.materials[1].color = head_material.color;
         m_IsInvisible = false;
-        m_AudioSource.PlayOneShot(m_SFXVisible);
+       
         isVisibleEvent?.Invoke();
         StartCoroutine(Timer(InvisibleRestoreTime, RestoreAbility));
     }

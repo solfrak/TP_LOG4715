@@ -84,7 +84,8 @@ public class FieldOfView : MonoBehaviour
         for (int i = 0; i < targetsInViewRadius.Length; i++)
         {
             Transform target = targetsInViewRadius[i].transform;
-            Vector3 dirToTarget = (target.position - transform.position).normalized;
+            Vector3 offset = new Vector3(0, 0.5f, 0);
+            Vector3 dirToTarget = (target.position + offset - transform.position).normalized;
             Vector3 transformFoward = transform.forward;
             GameObject character = GetParent(targetsInViewRadius[i].gameObject);
             Invisibility? invisibility = character.GetComponent<Invisibility>();
