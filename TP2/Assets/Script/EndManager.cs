@@ -22,7 +22,6 @@ public class EndManager : MonoBehaviour
             FindAnyObjectByType<PlayerControler>()?.gameObject.SetActive(false);
             FindAnyObjectByType<AudioManager>()?.PlaySFX(endWinSFX);
             endScreenCanvas?.gameObject.SetActive(true);
-            Debug.Log("Game Over");
         }
     }
 }

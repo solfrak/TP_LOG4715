@@ -508,7 +508,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ae6720ac03b5cb14899c712f590d289b, type: 3}
   - {fileID: 8300000, guid: ae6720ac03b5cb14899c712f590d289b, type: 3}
   - {fileID: 8300000, guid: ae6720ac03b5cb14899c712f590d289b, type: 3}
-  - {fileID: 8300000, guid: b77c18fad0e18264aa49b8d4d22898e5, type: 3}
+  - {fileID: 8300000, guid: a9fc28daed7257843b75a377c6b07449, type: 3}
   - {fileID: 8300000, guid: 06268fa3f996a3a4cb9033ccf8e21146, type: 3}
   energyBarSo: {fileID: 11400000, guid: 072aeaeb7329f034a8ee6740b59959ec, type: 2}
   CostJump: 0

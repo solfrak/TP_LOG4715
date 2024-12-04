@@ -9,7 +9,7 @@ namespace Script
         private bool isActive = false;
         private void Awake()
         {
-            m_Manager = GameObject.Find("Checkpoint Manager").GetComponent<CheckPointManager>();
+            m_Manager = FindAnyObjectByType<CheckPointManager>();
         }
 
         private void OnTriggerEnter(Collider other)

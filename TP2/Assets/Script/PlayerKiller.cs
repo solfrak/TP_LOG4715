@@ -1,6 +1,6 @@
+using Script;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PlayerKiller : MonoBehaviour
 {
@@ -31,12 +31,15 @@ public class PlayerKiller : MonoBehaviour
 
         FindAnyObjectByType<AudioManager>()?.PlaySFX(playerDeathSFX);
 
-        StartCoroutine(RestartScene());
+        StartCoroutine(RestartLevel());
     }
 
-    IEnumerator RestartScene()
+    IEnumerator RestartLevel()
     {
         yield return new WaitForSeconds(waitTimeBeforeRestart);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        
+        player.gameObject.SetActive(true);
+        isPlayerDead = false;
+        FindAnyObjectByType<CheckPointManager>()?.ResetPosition(player.gameObject);
     }
 }

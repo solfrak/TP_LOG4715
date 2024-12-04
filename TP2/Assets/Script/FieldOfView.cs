@@ -47,7 +47,6 @@ public class FieldOfView : MonoBehaviour
     public MeshFilter viewMeshFilter;
 
     private bool isInRange = false;
-    private GameObject detectedPlayer;
     private float timeDetectedPlayer;
 
     Mesh viewMesh;
@@ -76,6 +75,7 @@ public class FieldOfView : MonoBehaviour
 
         if (targetsInViewRadius.Length == 0)
         {
+            TurnOffDetection(null);
             isInRange = false;
             IsDetected = false;
             return;
@@ -120,7 +120,14 @@ public class FieldOfView : MonoBehaviour
     {
         if(IsDetected)
         {
-            DetectionEvent?.Invoke(target.gameObject, false);
+            if(target)
+            {
+                DetectionEvent?.Invoke(target?.gameObject, false);
+            }
+            else
+            {
+                DetectionEvent?.Invoke(null, false);
+            }
         }
 
         IsDetected = false;
